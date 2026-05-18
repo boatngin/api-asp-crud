@@ -19,5 +19,27 @@ namespace Backapi.Services
             return await _repository.AddUser(user);
         }
 
+        public async Task<object> GetUsersDatatable(
+            UserDataReq request
+        )
+        {
+            return await _repository.GetUsersDatatable(request);
+        }
+
+        // public async Task<User?> GetUserById(int id)
+        // {
+        //     return await _repository
+        // }
+
+        // public async Task<User?> EditUser(int id, User user)
+        // {
+        //     return await _repository.
+        // }
+
+        // public async Task<bool> DeleteUser(int id)
+        // {
+        //     return await _repository.
+        // }
+
     }
 }

@@ -24,6 +24,57 @@ namespace Backapi.Repositories
             return user;
         }
 
-        
+        public async Task<object> GetUsersDatatable(
+            UserDataReq request
+        )
+        {
+            var query = _context.Users.AsQueryable();
+
+            // if have serach
+            if (!string.IsNullOrEmpty(request.Search))
+            {
+                query = query.Where(x =>
+                    x.Fname.Contains(request.Search) ||
+                    x.Lname.Contains(request.Search) ||
+                    x.Email.Contains(request.Search) ||
+                    x.Username.Contains(request.Search)
+                );
+            }
+
+            // on order swtich
+            switch (request.OrderBy?.ToLower())
+            {
+                case "fname":
+                    query = request.OrderDirection == "desc"
+                        ? query.OrderByDescending(x => x.Fname)
+                        : query.OrderBy(x => x.Fname);
+                    break;
+
+                case "lname":
+                    query = request.OrderDirection == "desc"
+                        ? query.OrderByDescending(x => x.Lname)
+                        : query.OrderBy(x => x.Lname);
+                    break;
+
+                default:
+                    query = query.OrderBy(x => x.Id);
+                    break;
+            }
+
+            var total = await query.CountAsync();
+
+            var users = await query
+                .Skip((request.PageNumber - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToListAsync();
+
+            return new
+            {
+                total,
+                pageNumber = request.PageNumber,
+                pageSize = request.PageSize,
+                data = users
+            };
+        }
     }
 }

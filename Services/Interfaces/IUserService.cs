@@ -7,7 +7,7 @@ namespace Backapi.Services.Interfaces
     {
         Task<User> AddUser(User user);
 
-        // Task<object> GetUsersDatatable(UserDataReq request);
+        Task<object> GetUsersDatatable(UserDataReq request);
 
         // Task<User?> GetUserById(int id);
 
