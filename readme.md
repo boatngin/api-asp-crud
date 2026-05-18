@@ -103,15 +103,6 @@ dotnet add package Microsoft.EntityFrameworkCore.Tools
 dotnet tool install --global dotnet-ef
 ```
 
-If command not found:
-
-```bash
-export PATH="$PATH:$HOME/.dotnet/tools"
-source ~/.zshrc
-```
-
----
-
 # Create Migration
 
 ```bash
