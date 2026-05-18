@@ -26,20 +26,24 @@ namespace Backapi.Services
             return await _repository.GetUsersDatatable(request);
         }
 
-        // public async Task<User?> GetUserById(int id)
-        // {
-        //     return await _repository
-        // }
+        public async Task<User?> GetUserById(int id)
+        {
+            return await _repository.GetUserById(id);
+        }
 
-        // public async Task<User?> EditUser(int id, User user)
-        // {
-        //     return await _repository.
-        // }
+        public async Task<User?> EditUser(int id, User user)
+        {
+            return await _repository.EditUser(id,user);
+        }
 
-        // public async Task<bool> DeleteUser(int id)
-        // {
-        //     return await _repository.
-        // }
+        public async Task<bool> DeleteUser(int id)
+        {
+            return await _repository.DeleteUser(id);
+        }
 
+        public Task GetUsersDatatable(User request)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

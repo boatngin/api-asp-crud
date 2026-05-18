@@ -9,10 +9,10 @@ namespace Backapi.Repositories.Interfaces
 
         Task<object> GetUsersDatatable(UserDataReq request);
 
-        // Task<User?> GetUserById(int id);
+        Task<User?> GetUserById(int id);
 
-        // Task<User?> EditUser(int id, User user);
+        Task<User?> EditUser(int id, User user);
 
-        // Task<bool> DeleteUser(int id);
+        Task<bool> DeleteUser(int id);
     }
 }
