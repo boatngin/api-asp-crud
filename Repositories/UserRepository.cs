@@ -76,5 +76,48 @@ namespace Backapi.Repositories
                 data = users
             };
         }
+
+        public async Task<User?> GetUserById(int id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
+        public async Task<User?> EditUser(int id, User request)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.Fname = request.Fname;
+            user.Lname = request.Lname;
+            user.Email = request.Email;
+            user.Phone = request.Phone;
+            user.RoleId = request.RoleId;
+            user.Username = request.Username;
+            user.Password = request.Password;
+
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+
+        public async Task<bool> DeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            _context.Users.Remove(user);
+
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
