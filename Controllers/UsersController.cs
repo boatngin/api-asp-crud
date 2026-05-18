@@ -23,6 +23,15 @@ namespace Backapi.Controllers
             return Ok(result);
         }
 
+
+        [HttpPost("api/users/Datatable")]
+        public async Task<IActionResult> GetUsersDatatable(
+            UserDataReq rq
+        )
+        {
+            return Ok(await _service.GetUsersDatatable(rq));
+        }
+
         
     }
 }
